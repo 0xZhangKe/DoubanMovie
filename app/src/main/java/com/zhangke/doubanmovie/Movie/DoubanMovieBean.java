@@ -1,4 +1,4 @@
-package com.zhangke.doubanmovie;
+package com.zhangke.doubanmovie.Movie;
 
 /**
  * Created by ZhangKe on 2018/1/3.

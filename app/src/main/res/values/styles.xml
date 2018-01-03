@@ -19,7 +19,7 @@
 
     <!-- ToolBar 默认 Style -->
     <style name="toolbar_style">
-        <item name="android:background">@android:color/white</item>
+        <item name="android:background">@color/colorPrimary</item>
     </style>
     <!-- ToolBar 默认 them -->
     <style name="toolbar_them" parent="@style/ThemeOverlay.AppCompat.ActionBar">
