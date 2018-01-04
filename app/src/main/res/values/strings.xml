@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">豆瓣电影</string>
+    <string name="statement">本 APP 数据通过非正常手段获取，仅供个人娱乐及作行业交流，禁止用作商业用途。</string>
 </resources>
