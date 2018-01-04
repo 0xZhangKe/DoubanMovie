@@ -23,9 +23,9 @@
     </style>
     <!-- ToolBar 默认 them -->
     <style name="toolbar_them" parent="@style/ThemeOverlay.AppCompat.ActionBar">
-        <item name="colorControlNormal">@android:color/black</item>
-        <item name="android:textColorPrimary">@android:color/black</item>
-        <item name="actionMenuTextColor">@android:color/black</item>
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="actionMenuTextColor">@android:color/white</item>
     </style>
 
 </resources>

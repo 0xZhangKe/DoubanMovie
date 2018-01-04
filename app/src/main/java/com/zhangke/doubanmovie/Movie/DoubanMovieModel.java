@@ -5,6 +5,9 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.zhangke.doubanmovie.MovieApplication;
+import com.zhangke.doubanmovie.util.HttpUtil;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -98,6 +101,7 @@ public class DoubanMovieModel implements IDoubanMovieContract.Model {
         listData.clear();
     }
 
+    @Override
     public void setPeopleId(String peopleId) {
         this.peopleId = peopleId;
     }

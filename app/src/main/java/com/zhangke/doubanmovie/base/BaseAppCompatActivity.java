@@ -2,6 +2,7 @@ package com.zhangke.doubanmovie.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -19,6 +20,8 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity implements
     protected final String TAG = this.getClass().getSimpleName();
 
     private RoundProgressDialog roundProgressDialog;
+
+    private Snackbar snackbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -105,6 +108,11 @@ public abstract class BaseAppCompatActivity extends AppCompatActivity implements
                 roundProgressDialog.closeProgressDialog();
             }
         });
+    }
+
+    protected void showSnackbar(View view ,String msg){
+        snackbar = Snackbar.make(view,msg, Snackbar.LENGTH_SHORT);
+        snackbar.show();
     }
 
     @Override

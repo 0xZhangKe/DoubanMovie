@@ -1,12 +1,11 @@
 package com.zhangke.doubanmovie.Search;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.widget.EditText;
 
-import com.zhangke.doubanmovie.Movie.MainActivity;
 import com.zhangke.doubanmovie.R;
 import com.zhangke.doubanmovie.base.BaseAppCompatActivity;
 
@@ -20,6 +19,8 @@ import butterknife.OnClick;
 
 public class SearchUserActivity extends BaseAppCompatActivity {
 
+    @BindView(R.id.coordinator)
+    CoordinatorLayout coordinator;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.et_name)
@@ -41,10 +42,13 @@ public class SearchUserActivity extends BaseAppCompatActivity {
     public void onSearchClick(){
         String nickName = etName.getText().toString();
         if(TextUtils.isEmpty(nickName)){
-            showToastMessage("请输入昵称");
+            showSnackbar(coordinator, "请输入昵称");
             return;
         }
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, SearchResultActivity.class);
+        intent.putExtra(INTENT_ARG_01, nickName);
         startActivity(intent);
     }
+
+
 }

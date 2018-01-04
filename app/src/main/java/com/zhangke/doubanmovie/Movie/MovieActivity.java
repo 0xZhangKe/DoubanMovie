@@ -2,8 +2,8 @@ package com.zhangke.doubanmovie.Movie;
 
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
@@ -19,8 +19,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends BaseAppCompatActivity implements IDoubanMovieContract.View{
+public class MovieActivity extends BaseAppCompatActivity implements IDoubanMovieContract.View{
 
+    @BindView(R.id.coordinator)
+    CoordinatorLayout coordinator;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
@@ -28,6 +30,7 @@ public class MainActivity extends BaseAppCompatActivity implements IDoubanMovieC
     private DoubanMovieAdapter adapter;
 
     private IDoubanMovieContract.Model doubanMovieModel;
+    private String peopleId;
 
     @Override
     protected int getLayoutResId() {
@@ -39,15 +42,17 @@ public class MainActivity extends BaseAppCompatActivity implements IDoubanMovieC
         UiUtil.setWindow(this);
         ButterKnife.bind(this);
 
+        peopleId = getIntent().getStringExtra(INTENT_ARG_01);
+
         List<String> permissionList = new ArrayList<>();
         for (int i = 0; i < PermissionUtil.PERMISSION.length; i++) {
-            if (PermissionUtil.isLacksOfPermission(MainActivity.this, PermissionUtil.PERMISSION[i])) {
+            if (PermissionUtil.isLacksOfPermission(MovieActivity.this, PermissionUtil.PERMISSION[i])) {
                 permissionList.add(PermissionUtil.PERMISSION[i]);
             }
         }
         String[] permission = permissionList.toArray(new String[permissionList.size()]);
         if (permission.length > 0) {
-            ActivityCompat.requestPermissions(MainActivity.this, permission, 0x12);
+            ActivityCompat.requestPermissions(MovieActivity.this, permission, 0x12);
         }else{
             initData();
         }
@@ -60,6 +65,7 @@ public class MainActivity extends BaseAppCompatActivity implements IDoubanMovieC
         recyclerView.addItemDecoration(new SpacesItemDecoration());
 
         doubanMovieModel = new DoubanMovieModel(this, this);
+        doubanMovieModel.setPeopleId(peopleId);
         doubanMovieModel.reset();
         doubanMovieModel.performRequest();
         showRoundProgressDialog();
@@ -67,7 +73,7 @@ public class MainActivity extends BaseAppCompatActivity implements IDoubanMovieC
 
     @Override
     public void onError(String errorMsg) {
-        showToastMessage(errorMsg);
+        showSnackbar(coordinator, errorMsg);
         closeRoundProgressDialog();
     }
 

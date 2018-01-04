@@ -15,6 +15,7 @@ public interface IDoubanMovieContract {
 
     interface Model{
         void reset();
+        void setPeopleId(String peopleId);
         void performRequest();
     }
 }

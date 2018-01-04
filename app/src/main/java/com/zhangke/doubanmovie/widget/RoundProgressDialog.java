@@ -24,7 +24,6 @@ public class RoundProgressDialog {
     public  void showProgressDialog(){
         if(progressDialog==null){
             progressDialog=new ProgressDialog(context);
-            progressDialog.setMessage("请稍等...");
             progressDialog.setCanceledOnTouchOutside(false);
         }
         progressDialog.show();
